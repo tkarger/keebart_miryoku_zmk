@@ -5,7 +5,8 @@ This repository builds [Miryoku](https://github.com/manna-harbour/miryoku) firmw
 | Keyboard | GitHub Actions workflow | Boards built |
 | --- | --- | --- |
 | Corne Choc Pro BT | `Build Corne Choc Pro BT` | `corne_choc_pro_left`, `corne_choc_pro_right` |
-| Piantor Pro BT | `Build Piantor Pro BT` | `piantor_pro_bt_left`, `piantor_pro_bt_right` |
+| Piantor Pro BT (42-key) | `Build Piantor Pro BT` | `piantor_pro_bt_left`, `piantor_pro_bt_right` |
+| Piantor Pro BT (36-key, 5-col) | `Build Piantor Pro BT 5-Col` | `piantor_pro_bt_5col_left`, `piantor_pro_bt_5col_right` |
 | Sofle Choc Pro BT | `Build Sofle Choc Pro BT` | `sofle_choc_pro_left`, `sofle_choc_pro_right` |
 
 Each workflow builds both halves and includes the Keebart Sharp MIP display shield. ZMK Studio is disabled in all builds from this repository.
@@ -27,7 +28,8 @@ GitHub Actions is the recommended build method. It does not require a local ZMK 
 1. Open the **Actions** tab in your fork.
 2. Select the workflow for your keyboard:
    - `Build Corne Choc Pro BT` for Corne Choc Pro BT.
-   - `Build Piantor Pro BT` for Piantor Pro BT.
+   - `Build Piantor Pro BT` for Piantor Pro BT (42-key, with thumb cluster).
+   - `Build Piantor Pro BT 5-Col` for Piantor Pro BT (36-key: 5 columns per hand instead of 6, still with the 3-key thumb cluster per hand).
    - `Build Sofle Choc Pro BT` for Sofle Choc Pro BT.
 3. Select **Run workflow**.
 4. Select the branch to build.
@@ -137,6 +139,7 @@ The keyboard board definitions and Sharp MIP display shield come from [Keebart/z
 3. In your fork of this Miryoku repository, open the outboard file for the keyboard you want to build:
    - [Corne Choc Pro BT outboard](.github/workflows/outboards/boards/corne_choc_pro)
    - [Piantor Pro BT outboard](.github/workflows/outboards/boards/piantor_pro_bt)
+   - [Piantor Pro BT 5-Col outboard](.github/workflows/outboards/boards/piantor_pro_bt_5col)
    - [Sofle Choc Pro BT outboard](.github/workflows/outboards/boards/sofle_choc_pro)
 4. Replace the existing module reference:
 
@@ -156,7 +159,7 @@ The build clones the selected branch and passes it to ZMK as an extra module. Ke
 
 Replace the existing outboard reference rather than adding your fork through the workflow's `modules` option. Otherwise the official Keebart module and your fork are loaded together and may provide conflicting definitions for the same boards or shield.
 
-If you want all three keyboards to use your fork, update all three outboard files. You can point each keyboard at a different fork or branch when testing changes independently.
+If you want all the Keebart keyboard workflows to use your fork, update all of the outboard files listed above. You can point each keyboard at a different fork or branch when testing changes independently.
 
 ### What comes from each repository
 
@@ -180,10 +183,12 @@ The Miryoku workflow still forces `CONFIG_ZMK_STUDIO=n`, including when a custom
 
 - [Corne Choc Pro BT workflow](.github/workflows/build-corne-choc-pro.yml)
 - [Piantor Pro BT workflow](.github/workflows/build-piantor-pro.yml)
+- [Piantor Pro BT 5-Col workflow](.github/workflows/build-piantor-pro-5col.yml)
 - [Sofle Choc Pro BT workflow](.github/workflows/build-sofle-choc-pro.yml)
 - [Shared build workflow](.github/workflows/main.yml)
 - [Corne Choc Pro BT keymap](config/corne_choc_pro.keymap)
 - [Piantor Pro BT keymap](config/piantor_pro_bt.keymap)
+- [Piantor Pro BT 5-Col keymap](config/piantor_pro_bt_5col.keymap)
 - [Sofle Choc Pro BT keymap](config/sofle_choc_pro.keymap)
 - [Shared Miryoku configuration](miryoku/custom_config.h)
 

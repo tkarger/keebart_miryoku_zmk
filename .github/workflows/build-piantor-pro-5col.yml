@@ -1,0 +1,27 @@
+name: 'Build Piantor Pro BT 5-Col'
+on:
+  workflow_dispatch:
+    inputs:
+      alphas:
+        description: 'Alpha layout'
+        required: true
+        default: 'QWERTY'
+        type: choice
+        options:
+          - 'AZERTY'
+          - 'BEAKL15'
+          - 'Colemak'
+          - 'ColemakDHK'
+          - 'Dvorak'
+          - 'Halmak'
+          - 'QWERTY'
+          - 'QWERTZ'
+          - 'Workman'
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["piantor_pro_bt_5col_left","piantor_pro_bt_5col_right"]'
+      extra_shield: '["sharp_mip"]'
+      alphas: ${{ format('["{0}"]', inputs.alphas) }}
